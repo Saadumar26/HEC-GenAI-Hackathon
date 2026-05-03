@@ -1,6 +1,15 @@
 # 🚀 BrandMind — Autonomous AI Social Media Creative Agent
 
-> Developed as a **capstone project** during the **HEC ASPIRE Generative AI Training Program (Cohort 3)**.
+> Developed as a **capstone project** during the **HEC ASPIRE Generative AI Training Program (Cohort 3)**
+
+---
+
+## 🌐 Live Demo
+
+👉 **Access the deployed application here:**
+🔗 https://brand-mind-agent--SaadUmar3.replit.app
+
+> ⚠️ Note: The app may take a few seconds to load initially due to cold start (Replit free deployment).
 
 ---
 
@@ -8,7 +17,7 @@
 
 **BrandMind** is an AI-powered multi-agent system that automates the creation of **on-brand social media content**.
 
-It analyzes a company’s website to understand brand identity, transforms a simple user intent into structured content strategy, generates multiple post variations (captions + visuals), and improves them using an automated self-review loop.
+It analyzes a company’s website to understand brand identity, converts a simple user intent into structured content strategy, generates multiple post variations (captions + visuals), and improves them through an automated self-review loop.
 
 The system follows a **human-in-the-loop approach**, allowing users to review, edit, and finalize content efficiently.
 
@@ -16,7 +25,7 @@ The system follows a **human-in-the-loop approach**, allowing users to review, e
 
 ## 🎓 Program Context
 
-This project was developed as part of the **HEC ASPIRE Generative AI Training Program (Cohort 3)** — a national-level initiative focused on equipping students with practical skills in **Artificial Intelligence, Generative AI, and real-world system development**.
+This project was developed as part of the **HEC ASPIRE Generative AI Training Program (Cohort 3)** — a national-level initiative focused on practical learning in **Artificial Intelligence and Generative AI systems**.
 
 ### 🏛️ Program Details
 
@@ -34,39 +43,37 @@ This project was developed as part of the **HEC ASPIRE Generative AI Training Pr
 
 ### 🎯 Capstone Requirement
 
-As part of the program’s final evaluation, participants are required to:
+Participants are required to:
 
-* Build a **real-world AI-powered application**
-* Apply concepts learned during training (LLMs, APIs, system design)
-* Work in teams to simulate real industry collaboration
-* Present the solution in a **final hackathon/demo**
+* Build a **real-world AI application**
+* Apply concepts like LLMs, APIs, and system design
+* Work in teams (industry-style collaboration)
+* Present in a **final hackathon/demo**
 
-> 📌 **BrandMind** is developed as our team’s final hackathon submission, demonstrating the use of **multi-agent AI systems** for automated, brand-consistent content generation.
+> 📌 **BrandMind** is our team’s final submission demonstrating a **multi-agent AI system for automated content creation**.
 
 ---
 
 ## 🎯 Problem Statement
 
-Creating high-quality, consistent social media content is:
+Creating consistent and engaging social media content is:
 
 * Time-consuming
 * Repetitive
+* Hard to scale
 * Dependent on brand understanding
-* Difficult to scale
-
-Teams often struggle with maintaining consistency across platforms while producing engaging content quickly.
 
 ---
 
 ## 💡 Solution
 
-**BrandMind** automates the entire content creation pipeline using AI agents:
+**BrandMind** automates the workflow using AI agents:
 
-1. 🔍 **Brand Analysis** — Extracts tone, style, and identity from website
-2. 🧭 **Content Planning** — Converts intent into structured strategy
-3. ✍️ **Creative Generation** — Produces captions and visuals
-4. 🔁 **Self-Review Loop** — Improves content in 3 evaluation rounds
-5. 👤 **Human-in-the-loop** — Final selection and editing
+1. 🔍 Brand Analysis
+2. 🧭 Content Planning
+3. ✍️ Creative Generation
+4. 🔁 Self-Review Loop (3 rounds)
+5. 👤 Human-in-the-loop Editing
 
 ---
 
@@ -74,26 +81,26 @@ Teams often struggle with maintaining consistency across platforms while produci
 
 * 🧠 Multi-agent AI architecture
 * 🌐 Website-based brand understanding
-* ✍️ LinkedIn & Instagram post generation
-* 🎨 AI-generated images (DALL·E 3)
-* 🔁 3-stage automated self-review:
+* ✍️ LinkedIn & Instagram content generation
+* 🎨 AI-generated visuals (DALL·E 3)
+* 🔁 Automated self-review:
 
   * Brand consistency
   * Message clarity
   * Platform optimization
-* ✏️ Editable content variations
-* ✅ Best-performing post recommendation
+* ✏️ Editable post variations
+* ✅ Best variation recommendation
 
 ---
 
 ## 🏗️ System Architecture
 
-```
+```bash id="arch-final"
 Frontend (React + Tailwind)
         ↓
 Backend (FastAPI)
         ↓
-Multi-Agent Pipeline
+Multi-Agent AI Pipeline
         ↓
 OpenAI APIs (GPT-4o + DALL·E 3)
 ```
@@ -102,12 +109,12 @@ OpenAI APIs (GPT-4o + DALL·E 3)
 
 ## 🤖 AI Agent Pipeline
 
-| Agent                  | Responsibility                            |
-| ---------------------- | ----------------------------------------- |
-| **Brand Analyzer**     | Extract brand identity from website       |
-| **Content Planner**    | Convert user intent into structured brief |
-| **Creative Generator** | Generate captions & visuals               |
-| **Self Reviewer**      | Evaluate and improve content              |
+| Agent              | Role                       |
+| ------------------ | -------------------------- |
+| Brand Analyzer     | Extract brand identity     |
+| Content Planner    | Structure content strategy |
+| Creative Generator | Generate captions & images |
+| Self Reviewer      | Improve & score content    |
 
 ---
 
@@ -122,43 +129,27 @@ OpenAI APIs (GPT-4o + DALL·E 3)
 **Output:**
 
 * Multiple post variations
-* AI-generated visuals
+* AI-generated images
 * Reviewed & optimized captions
-* Recommended best variation
+* Recommended best post
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-
-* React.js (Vite)
-* Tailwind CSS
-* Axios
-
-### Backend
-
-* FastAPI (Python)
-
-### AI & APIs
-
-* OpenAI GPT-4o
-* DALL·E 3
-
-### Supporting Tools
-
-* BeautifulSoup (Web Scraping)
-* httpx / requests
-* Pydantic
+**Frontend:** React (Vite), Tailwind CSS
+**Backend:** FastAPI (Python)
+**AI:** OpenAI GPT-4o, DALL·E 3
+**Tools:** BeautifulSoup, Axios, httpx
 
 ---
 
 ## 📁 Project Structure
 
-```
+```bash id="structure-final"
 brandmind/
-├── frontend/        # React application
-├── backend/         # FastAPI + AI agents
+├── frontend/
+├── backend/
 ├── .env.example
 └── README.md
 ```
@@ -167,31 +158,31 @@ brandmind/
 
 ## ⚡ Setup Instructions
 
-### 🔹 Backend Setup
+### Backend
 
-```bash
+```bash id="backend-final"
 cd backend
 pip install -r requirements.txt
 cp ../.env.example .env
 ```
 
-Add your API key:
+Add:
 
-```
+```bash id="env-final"
 OPENAI_API_KEY=your_key_here
 ```
 
 Run:
 
-```bash
+```bash id="run-final"
 uvicorn main:app --reload --port 8000
 ```
 
 ---
 
-### 🔹 Frontend Setup
+### Frontend
 
-```bash
+```bash id="frontend-final"
 cd frontend
 npm install
 npm run dev
@@ -201,18 +192,18 @@ npm run dev
 
 ## 🔌 API Endpoints
 
-* `POST /api/generate` → Run full AI pipeline
-* `POST /api/edit` → Edit and re-optimize caption
+* `POST /api/generate` → Run full pipeline
+* `POST /api/edit` → Edit caption
 * `GET /api/health` → Health check
 
 ---
 
 ## 📊 Impact
 
-* ⏱️ Reduces content creation time from **hours to seconds**
-* 🎯 Ensures strong brand consistency
-* 🤖 Automates repetitive marketing workflows
-* 📈 Improves content quality using AI feedback loops
+* ⏱️ Hours → Seconds (content creation time)
+* 🎯 Strong brand consistency
+* 🤖 Automated marketing workflow
+* 📈 Improved content quality
 
 ---
 
@@ -238,25 +229,25 @@ npm run dev
 
 ## 🧠 Key Learnings
 
-* Designing multi-agent AI systems
-* Integrating LLM APIs into full-stack applications
-* Building human-in-the-loop AI workflows
-* Deploying applications using Replit
+* Multi-agent AI system design
+* Full-stack AI integration
+* Prompt engineering & evaluation
+* Real-world deployment using Replit
 
 ---
 
 ## 🚀 Future Improvements
 
-* Social media auto-posting integrations
+* Social media auto-posting
 * Analytics dashboard
 * Multi-language support
-* Persistent brand memory system
+* Persistent brand memory
 
 ---
 
 ## ⭐ Final Note
 
-> BrandMind is not just a content generator —
+> BrandMind is not just a generator —
 > it is an AI system that **understands, creates, critiques, and improves content autonomously**.
 
 ---
