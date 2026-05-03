@@ -7,7 +7,7 @@
 ## 🌐 Live Demo
 
 👉 **Deployed Application:**  
-https://brand-mind-agent.saadumar3.replit.app
+[https://brand-mind-agent.saadumar3.replit.app](https://brand-mind-agent--SaadUmar3.replit.app)
 
 > ⚠️ Note: First load may take a few seconds due to cold start on Replit free deployment.
 
