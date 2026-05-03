@@ -7,7 +7,7 @@
 ## 🌐 Live Demo
 
 👉 **Deployed Application:**  
-https://brand-mind-agent--SaadUmar3.replit.app  
+https://brand-mind-agent.saadumar3.replit.app
 
 > ⚠️ Note: First load may take a few seconds due to cold start on Replit free deployment.
 
@@ -41,7 +41,7 @@ Participants were required to build a real-world AI application demonstrating:
 **BrandMind** is an autonomous AI system that:
 
 1. 🔍 Analyzes a brand from its website  
-2. 🧭 Creates structured content strategy from user intent  
+2. 🧭 Creates a structured content strategy from user intent  
 3. ✍️ Generates multiple social media post variations  
 4. 🎨 Produces AI-generated visuals (DALL·E 3)  
 5. 🔁 Runs a 3-step self-review improvement loop  
@@ -74,8 +74,7 @@ BrandMind automates the entire workflow using AI agents:
 
 ## 🧠 System Architecture
 
-
-```bash id="arch-final"
+```
 Frontend (React + Tailwind)
         ↓
 Backend (FastAPI)
@@ -87,17 +86,14 @@ OpenAI APIs (GPT-4o + DALL·E 3)
 
 ---
 
-
----
-
 ## 🤖 AI Agent Pipeline
 
-| Agent | Responsibility |
-|------|----------------|
-| Brand Analyzer | Extracts brand identity from website |
-| Content Planner | Converts intent into structured strategy |
-| Creative Generator | Generates captions & visuals |
-| Self Reviewer | Improves content using scoring loop |
+| Agent              | Responsibility                              |
+|--------------------|---------------------------------------------|
+| Brand Analyzer     | Extracts brand identity from website        |
+| Content Planner    | Converts intent into structured strategy    |
+| Creative Generator | Generates captions & visuals                |
+| Self Reviewer      | Improves content using scoring loop         |
 
 ---
 
@@ -123,7 +119,7 @@ OpenAI APIs (GPT-4o + DALL·E 3)
 - Tailwind CSS
 
 ### Backend
-- FastAPI (Python-style API architecture)
+- FastAPI (Python)
 
 ### AI & APIs
 - OpenAI GPT-4o  
@@ -134,29 +130,30 @@ OpenAI APIs (GPT-4o + DALL·E 3)
 
 ## 📁 Project Structure
 
+```
 HEC-GenAI-Hackathon/
 │
-├── artifacts/                     # Main application builds (Replit generated)
+├── artifacts/                          # Main application builds (Replit generated)
 │   │
-│   ├── api-server/               # Backend (FastAPI / API layer)
+│   ├── api-server/                     # Backend (FastAPI / API layer)
 │   │   ├── .replit-artifact/
 │   │   └── src/
-│   │       ├── lib/             # Core backend utilities
-│   │       ├── middlewares/     # API middlewares (auth, cors, etc.)
+│   │       ├── lib/                    # Core backend utilities
+│   │       ├── middlewares/            # API middlewares (auth, cors, etc.)
 │   │       └── routes/
-│   │           └── brandmind/   # BrandMind API endpoints
+│   │           └── brandmind/          # BrandMind API endpoints
 │   │
-│   ├── brandmind/               # Frontend (React App)
+│   ├── brandmind/                      # Frontend (React App)
 │   │   ├── .replit-artifact/
 │   │   ├── public/
 │   │   └── src/
-│   │       ├── components/      # UI components
-│   │       │   └── ui/          # Reusable UI elements
-│   │       ├── hooks/           # Custom React hooks
-│   │       ├── lib/             # Frontend utilities
-│   │       └── pages/          # App screens / routes
+│   │       ├── components/             # UI components
+│   │       │   └── ui/                 # Reusable UI elements
+│   │       ├── hooks/                  # Custom React hooks
+│   │       ├── lib/                    # Frontend utilities
+│   │       └── pages/                  # App screens / routes
 │   │
-│   └── mockup-sandbox/          # UI experimentation / prototyping
+│   └── mockup-sandbox/                 # UI experimentation / prototyping
 │       ├── .replit-artifact/
 │       └── src/
 │           ├── .generated/
@@ -165,18 +162,18 @@ HEC-GenAI-Hackathon/
 │           ├── hooks/
 │           └── lib/
 │
-├── attached_assets/             # Uploaded assets / media / references
+├── attached_assets/                    # Uploaded assets / media / references
 │
-├── lib/                         # Shared system libraries (backend + integrations)
+├── lib/                                # Shared system libraries (backend + integrations)
 │   │
-│   ├── api-client-react/        # Auto-generated API client for React
-│   ├── api-spec/                # API specification layer
-│   ├── api-zod/                 # Zod validation schemas
+│   ├── api-client-react/               # Auto-generated API client for React
+│   ├── api-spec/                       # API specification layer
+│   ├── api-zod/                        # Zod validation schemas
 │   │
-│   ├── db/                      # Database schema & models
+│   ├── db/                             # Database schema & models
 │   │   └── src/schema/
 │   │
-│   ├── integrations/            # AI & external integrations
+│   ├── integrations/                   # AI & external integrations
 │   │   └── openai_ai_integrations/
 │   │       └── src/
 │   │           ├── client/
@@ -195,17 +192,19 @@ HEC-GenAI-Hackathon/
 │           ├── batch/
 │           └── image/
 │
-└── scripts/                    # Automation / helper scripts
+└── scripts/                            # Automation / helper scripts
     └── src/
-
+```
 
 ---
 
 ## 🔌 API Endpoints
 
-- `POST /api/generate` → Generate full AI content pipeline  
-- `POST /api/edit` → Edit and improve captions  
-- `GET /api/health` → Health check  
+| Method | Endpoint        | Description                         |
+|--------|-----------------|-------------------------------------|
+| POST   | `/api/generate` | Run the full AI content pipeline    |
+| POST   | `/api/edit`     | Edit and improve existing captions  |
+| GET    | `/api/health`   | Health check                        |
 
 ---
 
@@ -214,7 +213,7 @@ HEC-GenAI-Hackathon/
 - Multi-agent AI workflow  
 - Website-based brand understanding  
 - LinkedIn + Instagram post generation  
-- AI-generated visuals  
+- AI-generated visuals (DALL·E 3)  
 - Self-review scoring system  
 - Human editing interface  
 - Best variation recommendation  
@@ -223,26 +222,21 @@ HEC-GenAI-Hackathon/
 
 ## 👥 Team
 
-### Team Lead & AI System Design
-- Saad Umar  
-
-### Frontend Development
-- Fatima Naveed  
-
-### Backend & API Integration
-- Arshia Sajid Ali  
-
-### Testing & Documentation
-- Ghulam Mustafa  
+| Role                          | Member          |
+|-------------------------------|-----------------|
+| Team Lead & AI System Design  | Saad Umar       |
+| Frontend Development          | Fatima Naveed   |
+| Backend & API Integration     | Arshia Sajid Ali|
+| Testing & Documentation       | Ghulam Mustafa  |
 
 ---
 
 ## 📊 Impact
 
-- Reduces content creation time from hours → minutes  
-- Improves brand consistency  
-- Automates creative workflows  
-- Enables scalable marketing generation  
+- Reduces content creation time from **hours → minutes**  
+- Improves brand consistency across platforms  
+- Automates repetitive creative workflows  
+- Enables scalable marketing content generation  
 
 ---
 
