@@ -1,99 +1,79 @@
 # 🚀 BrandMind — Autonomous AI Social Media Creative Agent
 
-> Developed as a **capstone project** during the **HEC ASPIRE Generative AI Training Program (Cohort 3)**
+> A multi-agent Generative AI system that automates brand-aware social media content creation using LLMs and image generation.
 
 ---
 
 ## 🌐 Live Demo
 
-👉 **Access the deployed application here:**
-🔗 https://brand-mind-agent--SaadUmar3.replit.app
+👉 **Deployed Application:**  
+https://brand-mind-agent--SaadUmar3.replit.app  
 
-> ⚠️ Note: The app may take a few seconds to load initially due to cold start (Replit free deployment).
-
----
-
-## 🧠 Overview
-
-**BrandMind** is an AI-powered multi-agent system that automates the creation of **on-brand social media content**.
-
-It analyzes a company’s website to understand brand identity, converts a simple user intent into structured content strategy, generates multiple post variations (captions + visuals), and improves them through an automated self-review loop.
-
-The system follows a **human-in-the-loop approach**, allowing users to review, edit, and finalize content efficiently.
+> ⚠️ Note: First load may take a few seconds due to cold start on Replit free deployment.
 
 ---
 
-## 🎓 Program Context
+## 🎓 Hackathon & Program Context
 
-This project was developed as part of the **HEC ASPIRE Generative AI Training Program (Cohort 3)** — a national-level initiative focused on practical learning in **Artificial Intelligence and Generative AI systems**.
+This project was developed as part of the:
 
-### 🏛️ Program Details
+### 🧠 HEC ASPIRE Generative AI Training Program (Cohort 3)
 
-* **Program Name:** HEC ASPIRE Generative AI Training Program
+A national-level initiative focused on practical AI development and real-world generative AI applications.
 
-* **Cohort:** 3
+- 📅 Program Start: March 29, 2026  
+- 🏛️ Organized by: Higher Education Commission (HEC), Pakistan  
+- 🤝 Partners: ASPIRE Pakistan, Pak Angels, iCodeGuru  
 
-* **Start Date:** March 29, 2026
+### 🏆 Hackathon Requirement
 
-* **Organized by:** ASPIRE Pakistan
+Participants were required to build a real-world AI application demonstrating:
 
-* **In collaboration with:** Higher Education Commission (HEC)
+- LLM-based systems  
+- Multi-agent architectures  
+- API integration  
+- End-to-end deployment  
 
-* **Supporting partners:** Pak Angels, iCodeGuru
+---
 
-### 🎯 Capstone Requirement
+## 💡 Project Overview
 
-Participants are required to:
+**BrandMind** is an autonomous AI system that:
 
-* Build a **real-world AI application**
-* Apply concepts like LLMs, APIs, and system design
-* Work in teams (industry-style collaboration)
-* Present in a **final hackathon/demo**
-
-> 📌 **BrandMind** is our team’s final submission demonstrating a **multi-agent AI system for automated content creation**.
+1. 🔍 Analyzes a brand from its website  
+2. 🧭 Creates structured content strategy from user intent  
+3. ✍️ Generates multiple social media post variations  
+4. 🎨 Produces AI-generated visuals (DALL·E 3)  
+5. 🔁 Runs a 3-step self-review improvement loop  
+6. 👤 Allows human editing and final selection  
 
 ---
 
 ## 🎯 Problem Statement
 
-Creating consistent and engaging social media content is:
+Marketing teams struggle with:
 
-* Time-consuming
-* Repetitive
-* Hard to scale
-* Dependent on brand understanding
-
----
-
-## 💡 Solution
-
-**BrandMind** automates the workflow using AI agents:
-
-1. 🔍 Brand Analysis
-2. 🧭 Content Planning
-3. ✍️ Creative Generation
-4. 🔁 Self-Review Loop (3 rounds)
-5. 👤 Human-in-the-loop Editing
+- Time-consuming content creation  
+- Inconsistent brand voice  
+- Lack of scalability  
+- Manual editing and iteration  
 
 ---
 
-## ⚙️ Key Features
+## ⚙️ Solution
 
-* 🧠 Multi-agent AI architecture
-* 🌐 Website-based brand understanding
-* ✍️ LinkedIn & Instagram content generation
-* 🎨 AI-generated visuals (DALL·E 3)
-* 🔁 Automated self-review:
+BrandMind automates the entire workflow using AI agents:
 
-  * Brand consistency
-  * Message clarity
-  * Platform optimization
-* ✏️ Editable post variations
-* ✅ Best variation recommendation
+- Brand understanding  
+- Content planning  
+- Creative generation  
+- Quality evaluation  
+- Human-in-the-loop refinement  
 
 ---
 
-## 🏗️ System Architecture
+## 🧠 System Architecture
+
 
 ```bash id="arch-final"
 Frontend (React + Tailwind)
@@ -107,147 +87,184 @@ OpenAI APIs (GPT-4o + DALL·E 3)
 
 ---
 
+
+---
+
 ## 🤖 AI Agent Pipeline
 
-| Agent              | Role                       |
-| ------------------ | -------------------------- |
-| Brand Analyzer     | Extract brand identity     |
-| Content Planner    | Structure content strategy |
-| Creative Generator | Generate captions & images |
-| Self Reviewer      | Improve & score content    |
+| Agent | Responsibility |
+|------|----------------|
+| Brand Analyzer | Extracts brand identity from website |
+| Content Planner | Converts intent into structured strategy |
+| Creative Generator | Generates captions & visuals |
+| Self Reviewer | Improves content using scoring loop |
 
 ---
 
 ## 🧪 Workflow
 
-**Input:**
+### Input:
+- Website URL  
+- Brand Name  
+- Content Intent  
 
-* Website URL
-* Brand Name
-* Content Intent
-
-**Output:**
-
-* Multiple post variations
-* AI-generated images
-* Reviewed & optimized captions
-* Recommended best post
+### Output:
+- Multiple caption variations  
+- AI-generated images  
+- Reviewed & scored posts  
+- Recommended best variation  
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Frontend:** React (Vite), Tailwind CSS
-**Backend:** FastAPI (Python)
-**AI:** OpenAI GPT-4o, DALL·E 3
-**Tools:** BeautifulSoup, Axios, httpx
+### Frontend
+- React (Vite)
+- Tailwind CSS
+
+### Backend
+- FastAPI (Python-style API architecture)
+
+### AI & APIs
+- OpenAI GPT-4o  
+- OpenAI DALL·E 3  
+- BeautifulSoup (web scraping)
 
 ---
 
 ## 📁 Project Structure
 
-```bash id="structure-final"
-brandmind/
-├── frontend/
-├── backend/
-├── .env.example
-└── README.md
-```
+HEC-GenAI-Hackathon/
+│
+├── artifacts/                     # Main application builds (Replit generated)
+│   │
+│   ├── api-server/               # Backend (FastAPI / API layer)
+│   │   ├── .replit-artifact/
+│   │   └── src/
+│   │       ├── lib/             # Core backend utilities
+│   │       ├── middlewares/     # API middlewares (auth, cors, etc.)
+│   │       └── routes/
+│   │           └── brandmind/   # BrandMind API endpoints
+│   │
+│   ├── brandmind/               # Frontend (React App)
+│   │   ├── .replit-artifact/
+│   │   ├── public/
+│   │   └── src/
+│   │       ├── components/      # UI components
+│   │       │   └── ui/          # Reusable UI elements
+│   │       ├── hooks/           # Custom React hooks
+│   │       ├── lib/             # Frontend utilities
+│   │       └── pages/          # App screens / routes
+│   │
+│   └── mockup-sandbox/          # UI experimentation / prototyping
+│       ├── .replit-artifact/
+│       └── src/
+│           ├── .generated/
+│           ├── components/
+│           │   └── ui/
+│           ├── hooks/
+│           └── lib/
+│
+├── attached_assets/             # Uploaded assets / media / references
+│
+├── lib/                         # Shared system libraries (backend + integrations)
+│   │
+│   ├── api-client-react/        # Auto-generated API client for React
+│   ├── api-spec/                # API specification layer
+│   ├── api-zod/                 # Zod validation schemas
+│   │
+│   ├── db/                      # Database schema & models
+│   │   └── src/schema/
+│   │
+│   ├── integrations/            # AI & external integrations
+│   │   └── openai_ai_integrations/
+│   │       └── src/
+│   │           ├── client/
+│   │           │   └── audio/
+│   │           └── server/
+│   │               ├── audio/
+│   │               ├── batch/
+│   │               └── image/
+│   │
+│   ├── integrations-openai-ai-react/
+│   │   └── src/audio/
+│   │
+│   └── integrations-openai-ai-server/
+│       └── src/
+│           ├── audio/
+│           ├── batch/
+│           └── image/
+│
+└── scripts/                    # Automation / helper scripts
+    └── src/
 
----
-
-## ⚡ Setup Instructions
-
-### Backend
-
-```bash id="backend-final"
-cd backend
-pip install -r requirements.txt
-cp ../.env.example .env
-```
-
-Add:
-
-```bash id="env-final"
-OPENAI_API_KEY=your_key_here
-```
-
-Run:
-
-```bash id="run-final"
-uvicorn main:app --reload --port 8000
-```
-
----
-
-### Frontend
-
-```bash id="frontend-final"
-cd frontend
-npm install
-npm run dev
-```
 
 ---
 
 ## 🔌 API Endpoints
 
-* `POST /api/generate` → Run full pipeline
-* `POST /api/edit` → Edit caption
-* `GET /api/health` → Health check
+- `POST /api/generate` → Generate full AI content pipeline  
+- `POST /api/edit` → Edit and improve captions  
+- `GET /api/health` → Health check  
 
 ---
 
-## 📊 Impact
+## ⚡ Key Features
 
-* ⏱️ Hours → Seconds (content creation time)
-* 🎯 Strong brand consistency
-* 🤖 Automated marketing workflow
-* 📈 Improved content quality
+- Multi-agent AI workflow  
+- Website-based brand understanding  
+- LinkedIn + Instagram post generation  
+- AI-generated visuals  
+- Self-review scoring system  
+- Human editing interface  
+- Best variation recommendation  
 
 ---
 
 ## 👥 Team
 
-### 🧠 Team Lead & AI Architect
+### Team Lead & AI System Design
+- Saad Umar  
 
-* **Saad Umar**
+### Frontend Development
+- Fatima Naveed  
 
-### 🎨 Frontend & UI/UX
+### Backend & API Integration
+- Arshia Sajid Ali  
 
-* **Fatima Naveed**
+### Testing & Documentation
+- Ghulam Mustafa  
 
-### ⚙️ Backend & API Integration
+---
 
-* **Arshia Sajid Ali**
+## 📊 Impact
 
-### 🔍 QA, Testing & Documentation
+- Reduces content creation time from hours → minutes  
+- Improves brand consistency  
+- Automates creative workflows  
+- Enables scalable marketing generation  
 
-* **Ghulam Mustafa**
+---
+
+## 🚀 Future Enhancements
+
+- Social media auto-posting  
+- Analytics dashboard  
+- Multi-language support  
+- Brand memory system  
+- Fine-tuned marketing models  
 
 ---
 
 ## 🧠 Key Learnings
 
-* Multi-agent AI system design
-* Full-stack AI integration
-* Prompt engineering & evaluation
-* Real-world deployment using Replit
-
----
-
-## 🚀 Future Improvements
-
-* Social media auto-posting
-* Analytics dashboard
-* Multi-language support
-* Persistent brand memory
+- Multi-agent AI system design  
+- Prompt engineering for structured outputs  
+- Full-stack AI integration  
+- Real-world deployment on Replit  
 
 ---
 
 ## ⭐ Final Note
 
-> BrandMind is not just a generator —
-> it is an AI system that **understands, creates, critiques, and improves content autonomously**.
-
----
+BrandMind demonstrates how autonomous AI agents can combine reasoning, creativity, and evaluation to transform modern digital marketing workflows.
