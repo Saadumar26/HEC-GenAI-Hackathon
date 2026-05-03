@@ -1,0 +1,118 @@
+﻿AI Social Media - Automated, Brand-Aware Content Creation for LinkedIn & Instagram
+VC Track
+________________
+
+
+1. Goals / Motivation
+It’s Super Bowl and Olympic season. You’re about to host a hackathon, but your social media team hasn’t had the capacity to prepare related posts – what if there was an AI that could help you do this? 
+Welcome to AI Social Media – your AI companion that builds postable visuals aligned with your brand and along templates. 
+Your goal: Creating high-quality social media content is time-consuming, repetitive, and often inconsistent. Marketing teams struggle to:
+* Maintain a consistent brand voice and visual identity
+* Produce enough content to match ambitious posting schedules
+* Adapt posts quickly for different purposes (product launches, partnerships, events)
+* Experiment with variations while staying on-brand
+While generative AI can create text or images, most tools lack brand understanding, context, and iterative workflows, making them risky for real-world marketing use.
+Goal
+Build an AI-powered social media agent that can automatically create on-brand LinkedIn and Instagram posts by:
+* Inferring a company’s brand voice and corporate design from existing assets
+* Generating multiple post variations from a simple intent or schedule
+* Using agentic self-feedback loops to improve output quality
+* Keeping the human fully in the loop for selection and iteration
+The result should feel like a junior social media manager + designer, working at machine speed.
+As an example, feel free to use Hack-Nation and the super bowl/ Olympic games as a reference. (i.e., how could you automate the process of announcing our hackathon, the winners, the speakers while including cool references in our posts to the major sport’s events) 
+2. Features
+A. Brand & Design Understanding
+The agent should infer and approximate brand characteristics from provided inputs such as:
+* Company website content
+* Existing LinkedIn / Instagram posts
+* Optional brand or design guidelines
+Expected outputs:
+* Approximate brand voice (e.g. formal vs playful, emoji usage, CTA style)
+* Basic visual identity cues (colors, layout style, tone)
+* Consistent language and messaging patterns
+Perfect brand compliance is not required — reasonable approximation is sufficient.
+________________
+
+
+B. Social Media Planning Input
+The user provides a content plan or schedule, for example:
+* “Announce a new product”
+* “Promote an upcoming hackathon”
+* “Announce a partnership”
+* “Promote a venture track or demo day”
+Each entry should include:
+* Post type / intent
+* Platform (LinkedIn, Instagram, or both)
+* Optional constraints (date, tone, CTA)
+* Optional RAG/ Design-elements such as post contents (e.g., speaker names, prize announcements or pictures to be included)
+________________
+
+
+C. Automated Post Generation
+For each planned post, the agent should generate multiple variations, including:
+* Caption / post text
+* Background image
+* Simple, readable text overlay aligned with brand style
+Posts should be optimized for:
+* Clarity
+* Mobile readability
+* Platform norms (LinkedIn vs Instagram)
+________________
+
+
+D. Agentic Self-Feedback Loop
+Before presenting results to the user, the system should run 2–3 internal review iterations, using predefined quality checks such as:
+* Brand consistency
+* Message clarity
+* CTA effectiveness
+* Text readability on image
+This simulates an agentic workflow where the AI critiques and improves its own outputs.
+________________
+
+
+E. Human-in-the-Loop Editing
+The user should be able to:
+* Select a preferred post variation
+* Suggest edits (e.g. tone, wording, CTA, layout)
+* Regenerate improved versions based on feedback
+The system should respond iteratively, not restart from scratch.
+3. Optional Extensions (Stretch Goals)
+Teams are encouraged (but not required) to explore advanced features such as:
+A. Video Post Support
+* Template-based or short-form video generation 
+* Animated text overlays or image-to-video workflows
+* Optimized for social platforms
+B. Proactive Content Suggestions
+* Suggest post ideas based on inferred content strategy
+* Identify gaps in posting cadence
+* Propose posts around known events, launches, or campaigns
+C. Multi-Platform Adaptation
+* Automatically adapt tone, length, and layout per platform
+* Generate carousel-style posts or stories
+3. Hints and Resources
+Break each post into modular components:
+* Caption generation
+* Text overlay generation (keep it short and simple)
+* Background image generation
+* Template-based layout generation
+High-quality text-to-image models are encouraged (e.g., Nano Banana, DALL-E) 
+Self-feedback loops should use explicit criteria, not open-ended prompting
+Video generation should be limited to very short videos (up to 5 seconds) to decrease complexity
+Try to optimize for “postability”. Ask yourself at the end of your iteration: Would a company post this? If no, what could you improve. Current tools often fail since key elements such as logo placement, text overlay or generated images do not fit the overall brand voice or are simply incorrectly placed
+5. Why Does It Matter?
+This challenge tackles a real, unsolved problem in modern marketing.
+* Scales content creation without sacrificing brand consistency
+* Bridges the gap between generative AI and real-world marketing workflows
+* Demonstrates how agentic systems + human oversight can outperform single-shot AI tools
+* Serves as a blueprint for AI copilots in design, marketing, and communications
+
+
+
+
+
+
+
+
+
+
+Hack-Nation – Global AI Hackathon

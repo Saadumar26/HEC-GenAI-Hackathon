@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: brandmind
+    description: BrandMind AI social media agent
 paths:
   /healthz:
     get:
@@ -24,6 +26,98 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /brandmind/analyze:
+    post:
+      operationId: analyzeBrand
+      tags: [brandmind]
+      summary: Analyze brand from website URL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeBrandBody"
+      responses:
+        "200":
+          description: Brand profile extracted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BrandProfile"
+
+  /brandmind/generate:
+    post:
+      operationId: generatePosts
+      tags: [brandmind]
+      summary: Generate social media posts (full pipeline with self-review)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GeneratePostsBody"
+      responses:
+        "200":
+          description: Generated posts with review scores
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerationResult"
+
+  /brandmind/edit:
+    post:
+      operationId: editPost
+      tags: [brandmind]
+      summary: Edit a post variation based on user instruction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditPostBody"
+      responses:
+        "200":
+          description: Edited and re-reviewed post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostEditResult"
+
+  /brandmind/sessions:
+    get:
+      operationId: listSessions
+      tags: [brandmind]
+      summary: List recent generation sessions
+      responses:
+        "200":
+          description: List of sessions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GenerationSession"
+
+  /brandmind/sessions/{id}:
+    get:
+      operationId: getSession
+      tags: [brandmind]
+      summary: Get a specific generation session
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Session details with generated posts
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerationSession"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +128,238 @@ components:
       required:
         - status
 
+    AnalyzeBrandBody:
+      type: object
+      properties:
+        websiteUrl:
+          type: string
+        brandName:
+          type: string
+      required:
+        - websiteUrl
+        - brandName
+
+    BrandProfile:
+      type: object
+      properties:
+        brandName:
+          type: string
+        tone:
+          type: string
+        emojiUsage:
+          type: string
+        avgCaptionLengthLinkedin:
+          type: integer
+        avgCaptionLengthInstagram:
+          type: integer
+        colorPalette:
+          type: array
+          items:
+            type: string
+        ctaStyle:
+          type: string
+        hashtagCount:
+          type: integer
+        visualStyle:
+          type: string
+        keywords:
+          type: array
+          items:
+            type: string
+        voiceDescription:
+          type: string
+      required:
+        - brandName
+        - tone
+        - emojiUsage
+        - avgCaptionLengthLinkedin
+        - avgCaptionLengthInstagram
+        - colorPalette
+        - ctaStyle
+        - hashtagCount
+        - visualStyle
+        - keywords
+        - voiceDescription
+
+    GeneratePostsBody:
+      type: object
+      properties:
+        brandProfile:
+          $ref: "#/components/schemas/BrandProfile"
+        intent:
+          type: string
+        platforms:
+          type: array
+          items:
+            type: string
+        toneOverride:
+          type: string
+        additionalContext:
+          type: string
+      required:
+        - brandProfile
+        - intent
+        - platforms
+
+    PostVariation:
+      type: object
+      properties:
+        variationNumber:
+          type: integer
+        caption:
+          type: string
+        imageB64:
+          type: string
+        overlayText:
+          type: string
+        reviewScore:
+          type: number
+        reviewNotes:
+          type: string
+        platform:
+          type: string
+        recommended:
+          type: boolean
+        hookType:
+          type: string
+      required:
+        - variationNumber
+        - caption
+        - overlayText
+        - reviewScore
+        - reviewNotes
+        - platform
+        - recommended
+
+    ContentBrief:
+      type: object
+      properties:
+        postType:
+          type: string
+        keyMessages:
+          type: array
+          items:
+            type: string
+        hookIdeas:
+          type: array
+          items:
+            type: string
+        ctaOptions:
+          type: array
+          items:
+            type: string
+        visualDirection:
+          type: string
+        hashtags:
+          type: array
+          items:
+            type: string
+      required:
+        - postType
+        - keyMessages
+        - hookIdeas
+        - ctaOptions
+        - visualDirection
+        - hashtags
+
+    GenerationResult:
+      type: object
+      properties:
+        sessionId:
+          type: integer
+        brandProfile:
+          $ref: "#/components/schemas/BrandProfile"
+        contentBrief:
+          $ref: "#/components/schemas/ContentBrief"
+        posts:
+          type: object
+          properties:
+            linkedin:
+              type: array
+              items:
+                $ref: "#/components/schemas/PostVariation"
+            instagram:
+              type: array
+              items:
+                $ref: "#/components/schemas/PostVariation"
+          required:
+            - linkedin
+            - instagram
+      required:
+        - brandProfile
+        - contentBrief
+        - posts
+
+    EditPostBody:
+      type: object
+      properties:
+        caption:
+          type: string
+        editInstruction:
+          type: string
+        platform:
+          type: string
+        brandProfile:
+          $ref: "#/components/schemas/BrandProfile"
+        contentBrief:
+          $ref: "#/components/schemas/ContentBrief"
+      required:
+        - caption
+        - editInstruction
+        - platform
+        - brandProfile
+        - contentBrief
+
+    PostEditResult:
+      type: object
+      properties:
+        caption:
+          type: string
+        reviewScore:
+          type: number
+        reviewNotes:
+          type: string
+      required:
+        - caption
+        - reviewScore
+        - reviewNotes
+
+    GenerationSession:
+      type: object
+      properties:
+        id:
+          type: integer
+        brandName:
+          type: string
+        intent:
+          type: string
+        platforms:
+          type: array
+          items:
+            type: string
+        brandProfile:
+          $ref: "#/components/schemas/BrandProfile"
+        contentBrief:
+          $ref: "#/components/schemas/ContentBrief"
+        posts:
+          type: object
+          properties:
+            linkedin:
+              type: array
+              items:
+                $ref: "#/components/schemas/PostVariation"
+            instagram:
+              type: array
+              items:
+                $ref: "#/components/schemas/PostVariation"
+          required:
+            - linkedin
+            - instagram
+        createdAt:
+          type: string
+      required:
+        - id
+        - brandName
+        - intent
+        - platforms
+        - createdAt

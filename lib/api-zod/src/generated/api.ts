@@ -14,3 +14,274 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * @summary Analyze brand from website URL
+ */
+export const AnalyzeBrandBody = zod.object({
+  websiteUrl: zod.string(),
+  brandName: zod.string(),
+});
+
+export const AnalyzeBrandResponse = zod.object({
+  brandName: zod.string(),
+  tone: zod.string(),
+  emojiUsage: zod.string(),
+  avgCaptionLengthLinkedin: zod.number(),
+  avgCaptionLengthInstagram: zod.number(),
+  colorPalette: zod.array(zod.string()),
+  ctaStyle: zod.string(),
+  hashtagCount: zod.number(),
+  visualStyle: zod.string(),
+  keywords: zod.array(zod.string()),
+  voiceDescription: zod.string(),
+});
+
+/**
+ * @summary Generate social media posts (full pipeline with self-review)
+ */
+export const GeneratePostsBody = zod.object({
+  brandProfile: zod.object({
+    brandName: zod.string(),
+    tone: zod.string(),
+    emojiUsage: zod.string(),
+    avgCaptionLengthLinkedin: zod.number(),
+    avgCaptionLengthInstagram: zod.number(),
+    colorPalette: zod.array(zod.string()),
+    ctaStyle: zod.string(),
+    hashtagCount: zod.number(),
+    visualStyle: zod.string(),
+    keywords: zod.array(zod.string()),
+    voiceDescription: zod.string(),
+  }),
+  intent: zod.string(),
+  platforms: zod.array(zod.string()),
+  toneOverride: zod.string().optional(),
+  additionalContext: zod.string().optional(),
+});
+
+export const GeneratePostsResponse = zod.object({
+  sessionId: zod.number().optional(),
+  brandProfile: zod.object({
+    brandName: zod.string(),
+    tone: zod.string(),
+    emojiUsage: zod.string(),
+    avgCaptionLengthLinkedin: zod.number(),
+    avgCaptionLengthInstagram: zod.number(),
+    colorPalette: zod.array(zod.string()),
+    ctaStyle: zod.string(),
+    hashtagCount: zod.number(),
+    visualStyle: zod.string(),
+    keywords: zod.array(zod.string()),
+    voiceDescription: zod.string(),
+  }),
+  contentBrief: zod.object({
+    postType: zod.string(),
+    keyMessages: zod.array(zod.string()),
+    hookIdeas: zod.array(zod.string()),
+    ctaOptions: zod.array(zod.string()),
+    visualDirection: zod.string(),
+    hashtags: zod.array(zod.string()),
+  }),
+  posts: zod.object({
+    linkedin: zod.array(
+      zod.object({
+        variationNumber: zod.number(),
+        caption: zod.string(),
+        imageB64: zod.string().optional(),
+        overlayText: zod.string(),
+        reviewScore: zod.number(),
+        reviewNotes: zod.string(),
+        platform: zod.string(),
+        recommended: zod.boolean(),
+        hookType: zod.string().optional(),
+      }),
+    ),
+    instagram: zod.array(
+      zod.object({
+        variationNumber: zod.number(),
+        caption: zod.string(),
+        imageB64: zod.string().optional(),
+        overlayText: zod.string(),
+        reviewScore: zod.number(),
+        reviewNotes: zod.string(),
+        platform: zod.string(),
+        recommended: zod.boolean(),
+        hookType: zod.string().optional(),
+      }),
+    ),
+  }),
+});
+
+/**
+ * @summary Edit a post variation based on user instruction
+ */
+export const EditPostBody = zod.object({
+  caption: zod.string(),
+  editInstruction: zod.string(),
+  platform: zod.string(),
+  brandProfile: zod.object({
+    brandName: zod.string(),
+    tone: zod.string(),
+    emojiUsage: zod.string(),
+    avgCaptionLengthLinkedin: zod.number(),
+    avgCaptionLengthInstagram: zod.number(),
+    colorPalette: zod.array(zod.string()),
+    ctaStyle: zod.string(),
+    hashtagCount: zod.number(),
+    visualStyle: zod.string(),
+    keywords: zod.array(zod.string()),
+    voiceDescription: zod.string(),
+  }),
+  contentBrief: zod.object({
+    postType: zod.string(),
+    keyMessages: zod.array(zod.string()),
+    hookIdeas: zod.array(zod.string()),
+    ctaOptions: zod.array(zod.string()),
+    visualDirection: zod.string(),
+    hashtags: zod.array(zod.string()),
+  }),
+});
+
+export const EditPostResponse = zod.object({
+  caption: zod.string(),
+  reviewScore: zod.number(),
+  reviewNotes: zod.string(),
+});
+
+/**
+ * @summary List recent generation sessions
+ */
+export const ListSessionsResponseItem = zod.object({
+  id: zod.number(),
+  brandName: zod.string(),
+  intent: zod.string(),
+  platforms: zod.array(zod.string()),
+  brandProfile: zod
+    .object({
+      brandName: zod.string(),
+      tone: zod.string(),
+      emojiUsage: zod.string(),
+      avgCaptionLengthLinkedin: zod.number(),
+      avgCaptionLengthInstagram: zod.number(),
+      colorPalette: zod.array(zod.string()),
+      ctaStyle: zod.string(),
+      hashtagCount: zod.number(),
+      visualStyle: zod.string(),
+      keywords: zod.array(zod.string()),
+      voiceDescription: zod.string(),
+    })
+    .optional(),
+  contentBrief: zod
+    .object({
+      postType: zod.string(),
+      keyMessages: zod.array(zod.string()),
+      hookIdeas: zod.array(zod.string()),
+      ctaOptions: zod.array(zod.string()),
+      visualDirection: zod.string(),
+      hashtags: zod.array(zod.string()),
+    })
+    .optional(),
+  posts: zod
+    .object({
+      linkedin: zod.array(
+        zod.object({
+          variationNumber: zod.number(),
+          caption: zod.string(),
+          imageB64: zod.string().optional(),
+          overlayText: zod.string(),
+          reviewScore: zod.number(),
+          reviewNotes: zod.string(),
+          platform: zod.string(),
+          recommended: zod.boolean(),
+          hookType: zod.string().optional(),
+        }),
+      ),
+      instagram: zod.array(
+        zod.object({
+          variationNumber: zod.number(),
+          caption: zod.string(),
+          imageB64: zod.string().optional(),
+          overlayText: zod.string(),
+          reviewScore: zod.number(),
+          reviewNotes: zod.string(),
+          platform: zod.string(),
+          recommended: zod.boolean(),
+          hookType: zod.string().optional(),
+        }),
+      ),
+    })
+    .optional(),
+  createdAt: zod.string(),
+});
+export const ListSessionsResponse = zod.array(ListSessionsResponseItem);
+
+/**
+ * @summary Get a specific generation session
+ */
+export const GetSessionParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+export const GetSessionResponse = zod.object({
+  id: zod.number(),
+  brandName: zod.string(),
+  intent: zod.string(),
+  platforms: zod.array(zod.string()),
+  brandProfile: zod
+    .object({
+      brandName: zod.string(),
+      tone: zod.string(),
+      emojiUsage: zod.string(),
+      avgCaptionLengthLinkedin: zod.number(),
+      avgCaptionLengthInstagram: zod.number(),
+      colorPalette: zod.array(zod.string()),
+      ctaStyle: zod.string(),
+      hashtagCount: zod.number(),
+      visualStyle: zod.string(),
+      keywords: zod.array(zod.string()),
+      voiceDescription: zod.string(),
+    })
+    .optional(),
+  contentBrief: zod
+    .object({
+      postType: zod.string(),
+      keyMessages: zod.array(zod.string()),
+      hookIdeas: zod.array(zod.string()),
+      ctaOptions: zod.array(zod.string()),
+      visualDirection: zod.string(),
+      hashtags: zod.array(zod.string()),
+    })
+    .optional(),
+  posts: zod
+    .object({
+      linkedin: zod.array(
+        zod.object({
+          variationNumber: zod.number(),
+          caption: zod.string(),
+          imageB64: zod.string().optional(),
+          overlayText: zod.string(),
+          reviewScore: zod.number(),
+          reviewNotes: zod.string(),
+          platform: zod.string(),
+          recommended: zod.boolean(),
+          hookType: zod.string().optional(),
+        }),
+      ),
+      instagram: zod.array(
+        zod.object({
+          variationNumber: zod.number(),
+          caption: zod.string(),
+          imageB64: zod.string().optional(),
+          overlayText: zod.string(),
+          reviewScore: zod.number(),
+          reviewNotes: zod.string(),
+          platform: zod.string(),
+          recommended: zod.boolean(),
+          hookType: zod.string().optional(),
+        }),
+      ),
+    })
+    .optional(),
+  createdAt: zod.string(),
+});

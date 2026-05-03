@@ -5,18 +5,30 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import type {
+  MutationFunction,
   QueryFunction,
   QueryKey,
+  UseMutationOptions,
+  UseMutationResult,
   UseQueryOptions,
   UseQueryResult,
 } from "@tanstack/react-query";
 
-import type { HealthStatus } from "./api.schemas";
+import type {
+  AnalyzeBrandBody,
+  BrandProfile,
+  EditPostBody,
+  GeneratePostsBody,
+  GenerationResult,
+  GenerationSession,
+  HealthStatus,
+  PostEditResult,
+} from "./api.schemas";
 
 import { customFetch } from "../custom-fetch";
-import type { ErrorType } from "../custom-fetch";
+import type { ErrorType, BodyType } from "../custom-fetch";
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
@@ -92,6 +104,426 @@ export function useHealthCheck<
   request?: SecondParameter<typeof customFetch>;
 }): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
   const queryOptions = getHealthCheckQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * @summary Analyze brand from website URL
+ */
+export const getAnalyzeBrandUrl = () => {
+  return `/api/brandmind/analyze`;
+};
+
+export const analyzeBrand = async (
+  analyzeBrandBody: AnalyzeBrandBody,
+  options?: RequestInit,
+): Promise<BrandProfile> => {
+  return customFetch<BrandProfile>(getAnalyzeBrandUrl(), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(analyzeBrandBody),
+  });
+};
+
+export const getAnalyzeBrandMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof analyzeBrand>>,
+    TError,
+    { data: BodyType<AnalyzeBrandBody> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof analyzeBrand>>,
+  TError,
+  { data: BodyType<AnalyzeBrandBody> },
+  TContext
+> => {
+  const mutationKey = ["analyzeBrand"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof analyzeBrand>>,
+    { data: BodyType<AnalyzeBrandBody> }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return analyzeBrand(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type AnalyzeBrandMutationResult = NonNullable<
+  Awaited<ReturnType<typeof analyzeBrand>>
+>;
+export type AnalyzeBrandMutationBody = BodyType<AnalyzeBrandBody>;
+export type AnalyzeBrandMutationError = ErrorType<unknown>;
+
+/**
+ * @summary Analyze brand from website URL
+ */
+export const useAnalyzeBrand = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof analyzeBrand>>,
+    TError,
+    { data: BodyType<AnalyzeBrandBody> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof analyzeBrand>>,
+  TError,
+  { data: BodyType<AnalyzeBrandBody> },
+  TContext
+> => {
+  return useMutation(getAnalyzeBrandMutationOptions(options));
+};
+
+/**
+ * @summary Generate social media posts (full pipeline with self-review)
+ */
+export const getGeneratePostsUrl = () => {
+  return `/api/brandmind/generate`;
+};
+
+export const generatePosts = async (
+  generatePostsBody: GeneratePostsBody,
+  options?: RequestInit,
+): Promise<GenerationResult> => {
+  return customFetch<GenerationResult>(getGeneratePostsUrl(), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(generatePostsBody),
+  });
+};
+
+export const getGeneratePostsMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof generatePosts>>,
+    TError,
+    { data: BodyType<GeneratePostsBody> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof generatePosts>>,
+  TError,
+  { data: BodyType<GeneratePostsBody> },
+  TContext
+> => {
+  const mutationKey = ["generatePosts"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof generatePosts>>,
+    { data: BodyType<GeneratePostsBody> }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return generatePosts(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type GeneratePostsMutationResult = NonNullable<
+  Awaited<ReturnType<typeof generatePosts>>
+>;
+export type GeneratePostsMutationBody = BodyType<GeneratePostsBody>;
+export type GeneratePostsMutationError = ErrorType<unknown>;
+
+/**
+ * @summary Generate social media posts (full pipeline with self-review)
+ */
+export const useGeneratePosts = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof generatePosts>>,
+    TError,
+    { data: BodyType<GeneratePostsBody> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof generatePosts>>,
+  TError,
+  { data: BodyType<GeneratePostsBody> },
+  TContext
+> => {
+  return useMutation(getGeneratePostsMutationOptions(options));
+};
+
+/**
+ * @summary Edit a post variation based on user instruction
+ */
+export const getEditPostUrl = () => {
+  return `/api/brandmind/edit`;
+};
+
+export const editPost = async (
+  editPostBody: EditPostBody,
+  options?: RequestInit,
+): Promise<PostEditResult> => {
+  return customFetch<PostEditResult>(getEditPostUrl(), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(editPostBody),
+  });
+};
+
+export const getEditPostMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof editPost>>,
+    TError,
+    { data: BodyType<EditPostBody> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof editPost>>,
+  TError,
+  { data: BodyType<EditPostBody> },
+  TContext
+> => {
+  const mutationKey = ["editPost"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof editPost>>,
+    { data: BodyType<EditPostBody> }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return editPost(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type EditPostMutationResult = NonNullable<
+  Awaited<ReturnType<typeof editPost>>
+>;
+export type EditPostMutationBody = BodyType<EditPostBody>;
+export type EditPostMutationError = ErrorType<unknown>;
+
+/**
+ * @summary Edit a post variation based on user instruction
+ */
+export const useEditPost = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof editPost>>,
+    TError,
+    { data: BodyType<EditPostBody> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof editPost>>,
+  TError,
+  { data: BodyType<EditPostBody> },
+  TContext
+> => {
+  return useMutation(getEditPostMutationOptions(options));
+};
+
+/**
+ * @summary List recent generation sessions
+ */
+export const getListSessionsUrl = () => {
+  return `/api/brandmind/sessions`;
+};
+
+export const listSessions = async (
+  options?: RequestInit,
+): Promise<GenerationSession[]> => {
+  return customFetch<GenerationSession[]>(getListSessionsUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getListSessionsQueryKey = () => {
+  return [`/api/brandmind/sessions`] as const;
+};
+
+export const getListSessionsQueryOptions = <
+  TData = Awaited<ReturnType<typeof listSessions>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof listSessions>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getListSessionsQueryKey();
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof listSessions>>> = ({
+    signal,
+  }) => listSessions({ signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof listSessions>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type ListSessionsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof listSessions>>
+>;
+export type ListSessionsQueryError = ErrorType<unknown>;
+
+/**
+ * @summary List recent generation sessions
+ */
+
+export function useListSessions<
+  TData = Awaited<ReturnType<typeof listSessions>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof listSessions>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getListSessionsQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * @summary Get a specific generation session
+ */
+export const getGetSessionUrl = (id: number) => {
+  return `/api/brandmind/sessions/${id}`;
+};
+
+export const getSession = async (
+  id: number,
+  options?: RequestInit,
+): Promise<GenerationSession> => {
+  return customFetch<GenerationSession>(getGetSessionUrl(id), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetSessionQueryKey = (id: number) => {
+  return [`/api/brandmind/sessions/${id}`] as const;
+};
+
+export const getGetSessionQueryOptions = <
+  TData = Awaited<ReturnType<typeof getSession>>,
+  TError = ErrorType<unknown>,
+>(
+  id: number,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getSession>>,
+      TError,
+      TData
+    >;
+    request?: SecondParameter<typeof customFetch>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetSessionQueryKey(id);
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getSession>>> = ({
+    signal,
+  }) => getSession(id, { signal, ...requestOptions });
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: !!id,
+    ...queryOptions,
+  } as UseQueryOptions<
+    Awaited<ReturnType<typeof getSession>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetSessionQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getSession>>
+>;
+export type GetSessionQueryError = ErrorType<unknown>;
+
+/**
+ * @summary Get a specific generation session
+ */
+
+export function useGetSession<
+  TData = Awaited<ReturnType<typeof getSession>>,
+  TError = ErrorType<unknown>,
+>(
+  id: number,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getSession>>,
+      TError,
+      TData
+    >;
+    request?: SecondParameter<typeof customFetch>;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetSessionQueryOptions(id, options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;

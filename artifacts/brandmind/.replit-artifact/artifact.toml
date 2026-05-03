@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "BrandMind"
+version = "1.0.0"
+id = "artifacts/brandmind"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25397
+
+[services.development]
+run = "pnpm --filter @workspace/brandmind run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/brandmind", "run", "build" ]
+publicDir = "artifacts/brandmind/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25397"
+BASE_PATH = "/"

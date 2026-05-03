@@ -8,3 +8,93 @@
 export interface HealthStatus {
   status: string;
 }
+
+export interface AnalyzeBrandBody {
+  websiteUrl: string;
+  brandName: string;
+}
+
+export interface BrandProfile {
+  brandName: string;
+  tone: string;
+  emojiUsage: string;
+  avgCaptionLengthLinkedin: number;
+  avgCaptionLengthInstagram: number;
+  colorPalette: string[];
+  ctaStyle: string;
+  hashtagCount: number;
+  visualStyle: string;
+  keywords: string[];
+  voiceDescription: string;
+}
+
+export interface GeneratePostsBody {
+  brandProfile: BrandProfile;
+  intent: string;
+  platforms: string[];
+  toneOverride?: string;
+  additionalContext?: string;
+}
+
+export interface PostVariation {
+  variationNumber: number;
+  caption: string;
+  imageB64?: string;
+  overlayText: string;
+  reviewScore: number;
+  reviewNotes: string;
+  platform: string;
+  recommended: boolean;
+  hookType?: string;
+}
+
+export interface ContentBrief {
+  postType: string;
+  keyMessages: string[];
+  hookIdeas: string[];
+  ctaOptions: string[];
+  visualDirection: string;
+  hashtags: string[];
+}
+
+export type GenerationResultPosts = {
+  linkedin: PostVariation[];
+  instagram: PostVariation[];
+};
+
+export interface GenerationResult {
+  sessionId?: number;
+  brandProfile: BrandProfile;
+  contentBrief: ContentBrief;
+  posts: GenerationResultPosts;
+}
+
+export interface EditPostBody {
+  caption: string;
+  editInstruction: string;
+  platform: string;
+  brandProfile: BrandProfile;
+  contentBrief: ContentBrief;
+}
+
+export interface PostEditResult {
+  caption: string;
+  reviewScore: number;
+  reviewNotes: string;
+}
+
+export type GenerationSessionPosts = {
+  linkedin: PostVariation[];
+  instagram: PostVariation[];
+};
+
+export interface GenerationSession {
+  id: number;
+  brandName: string;
+  intent: string;
+  platforms: string[];
+  brandProfile?: BrandProfile;
+  contentBrief?: ContentBrief;
+  posts?: GenerationSessionPosts;
+  createdAt: string;
+}
