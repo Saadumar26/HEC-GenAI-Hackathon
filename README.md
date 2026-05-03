@@ -224,7 +224,7 @@ HEC-GenAI-Hackathon/
 
 | Role                          | Member          |
 |-------------------------------|-----------------|
-| Team Lead & AI System Design  | Saad Umar       |
+| Team Lead & AI System Design  | Muhammad Saad Umar       |
 | Frontend Development          | Fatima Naveed   |
 | Backend & API Integration     | Arshia Sajid Ali|
 | Testing & Documentation       | Ghulam Mustafa  |
